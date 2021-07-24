@@ -12,6 +12,23 @@ code {
     monospace;
 }
 
+button {
+  background: white;
+  border: 1px solid #3a0775;
+  color: #3a0775;
+  display: block;
+  font-size: 16px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #3a0775;
+  color: white;
+  cursor: pointer;
+}
+
 .placesAutocomplete {
   align-items: center;
   display: flex;

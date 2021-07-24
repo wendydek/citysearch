@@ -18,37 +18,38 @@ const App = () => {
   };
 
   return (
-    <div className="placesAutocomplete">
-      <div className="placesAutocomplete__inputWrap">
-        <label htmlFor="city" className="label">
-          Your city
-          <span
-            className={autocompleteErr ? "inputError" : "inputErrorSkeleton"}
-          >
-            {autocompleteErr}
+    <form>
+      <div className="placesAutocomplete">
+        <div className="placesAutocomplete__inputWrap">
+          <label htmlFor="city" className="label">
+            Your city
+            {autocompleteErr && (
+              <span className="inputError">{autocompleteErr}</span>
+            )}
+          </label>
+          <input
+            list="places"
+            type="text"
+            id="city"
+            name="city"
+            onChange={handleCityChange}
+            value={city}
+            required
+            pattern={autocompleteCities.join("|")}
+            autoComplete="off"
+          />
+          <datalist id="places">
+            {autocompleteCities.map((city, i) => (
+              <option key={i}>{city}</option>
+            ))}
+          </datalist>
+          <span className="placesAutocomplete__hint">
+            *start typing and choose your city from the given options
           </span>
-        </label>
-        <input
-          list="places"
-          type="text"
-          id="city"
-          name="city"
-          onChange={handleCityChange}
-          value={city}
-          required
-          pattern={autocompleteCities.join("|")}
-          autoComplete="off"
-        />
-        <datalist id="places">
-          {autocompleteCities.map((city, i) => (
-            <option key={i}>{city}</option>
-          ))}
-        </datalist>
-        <span className="placesAutocomplete__hint">
-          *start typing and choose your city from the given options
-        </span>
+          <button type="submit">Submit</button>
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 
